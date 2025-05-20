@@ -201,4 +201,4 @@ gdb build/asm_test
 
 # 📄 **License**
 
-📝 This project is licensed under the **MIT License**. See `LICENSE` for details.
+📝 This project is for  academic purposes !
