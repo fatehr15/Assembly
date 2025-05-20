@@ -1,0 +1,167 @@
+# Assembly Function Library
+
+A lightweight assembly library providing common utility functions for numerical, string, and array operations, callable from C.
+
+## Table of Contents
+
+1. [Project Overview](#project-overview)
+2. [Directory Structure](#directory-structure)
+3. [Prerequisites](#prerequisites)
+4. [Building](#building)
+5. [Usage](#usage)
+6. [API Reference](#api-reference)
+
+   * [Number Operations](#number-operations)
+   * [String Operations](#string-operations)
+   * [Array Operations](#array-operations)
+7. [Testing](#testing)
+8. [Debugging Guide](#debugging-guide)
+9. [Tools](#tools)
+10. [Contributing](#contributing)
+11. [License](#license)
+
+---
+
+## Project Overview
+
+This project implements a collection of utility routines in x86-64 assembly, exposing a C-callable interface for:
+
+* Digit summation and factorial computation
+* Even number checking
+* String length and emptiness checking
+* Array printing, reversing, and sorting
+
+These routines are wrapped with a C interface (`c_wrapper.c`) and demonstrated in `main.c`.
+
+## Directory Structure
+
+```plaintext
+project/
+├── src/
+│   ├── assembly_library.asm   # Assembly source code
+│   ├── c_wrapper.c            # C wrapper for assembly routines
+│   └── main.c                 # Example usage and entry point
+├── include/
+│   └── assembly_library.h     # Public API definitions
+├── build/
+│   ├── assembly_library.o     # Compiled assembly object
+│   ├── c_wrapper.o            # Compiled C wrapper object
+│   └── asm_test               # Final executable
+├── tests/
+│   ├── unit_tests.c           # Criterion unit tests
+│   └── benchmark.c            # Benchmarking harness
+├── tools/
+│   ├── debug_helpers.py       # GDB helper scripts
+│   ├── reg_tracker.py         # Register tracking utility
+│   └── mem_access.py          # Memory access log visualizer
+├── docs/
+│   ├── assembly_docs.md       # Detailed assembly routines documentation
+│   └── debugging_guide.md     # Common debugging tips and GDB commands
+└── Makefile                   # Build automation
+```
+
+## Prerequisites
+
+* GNU `gcc` (version 7.0+)
+* `nasm` assembler (version 2.13+)
+* Criterion testing framework (for unit tests)
+* Python 3.x (for tools in `tools/`)
+
+## Building
+
+From the project root:
+
+```bash
+# Build all components and the test executable\ make all
+
+# Clean build artifacts\ make clean
+```
+
+**Makefile targets:**
+
+* `all`: Create build directory and compile everything
+* `clean`: Remove the `build/` directory
+
+## Usage
+
+After building, run the example executable:
+
+```bash
+cd build
+./asm_test
+```
+
+This will demonstrate each assembly routine via `main.c`.
+
+## API Reference
+
+### Number Operations
+
+| Function      | Prototype                   | Description                             |
+| ------------- | --------------------------- | --------------------------------------- |
+| `sumOfDigits` | `int sumOfDigits(int num);` | Returns sum of decimal digits of `num`. |
+| `factorial`   | `long factorial(int num);`  | Computes factorial (`0!` = 1).          |
+| `isEven`      | `bool isEven(int num);`     | Returns true if `num` is even.          |
+
+### String Operations
+
+| Function       | Prototype                            | Description                               |
+| -------------- | ------------------------------------ | ----------------------------------------- |
+| `stringLength` | `int stringLength(const char* str);` | Returns length of null-terminated string. |
+| `isEmpty`      | `bool isEmpty(const char* str);`     | True if string length is zero.            |
+
+### Array Operations
+
+| Function       | Prototype                                 | Description                      |
+| -------------- | ----------------------------------------- | -------------------------------- |
+| `printArray`   | `void printArray(int arr[], int size);`   | Prints array elements to stdout. |
+| `reverseArray` | `void reverseArray(int arr[], int size);` | Reverses array in place.         |
+| `bubbleSort`   | `void bubbleSort(int arr[], int size);`   | Sorts array with bubble sort.    |
+
+## Testing
+
+The project uses [Criterion](https://github.com/Snaipe/Criterion) for unit testing.
+
+```bash
+# Build tests
+gcc -Wall -Wextra -Iinclude -o build/unit_tests tests/unit_tests.c build/assembly_library.o build/c_wrapper.o -lcriterion
+
+# Run tests
+./build/unit_tests
+```
+
+A benchmarking harness (`tests/benchmark.c`) measures performance of select routines.
+
+## Debugging Guide
+
+See `docs/debugging_guide.md` for detailed instructions. Common commands include:
+
+```bash
+gdb build/asm_test
+# Show registers
+(gdb) info registers
+# Single-step instruction
+(gdb) stepi
+# Examine stack memory
+(gdb) x/10xw $rsp
+```
+
+Common segmentation fault causes:
+
+* Invalid memory access
+* Stack misalignment
+* Null pointer dereference
+
+## Tools
+
+* `tools/reg_tracker.py`: real-time register monitoring and CSV export
+* `tools/mem_access.py`: parse a log file and visualize memory accesses
+* `tools/debug_helpers.py`: GDB command macros for faster debugging
+
+## Contributing
+
+Contributions, issues, and feature requests are welcome! Please open an issue or submit a pull request.
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for details.
