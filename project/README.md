@@ -3,23 +3,9 @@
 > A lightweight **x86-64 assembly** library offering utility functions for numbers, strings, and arrays with a C-callable interface.
 
 ---
+📚 Table of Contents
 
-# 📚 **Table of Contents**
-
-**1.** [📖 Project Overview](#project-overview)
-**2.** [📁 Directory Structure](#directory-structure)
-**3.** [⚙️ Prerequisites](#prerequisites)
-**4.** [🛠 Building](#building)
-**5.** [🚀 Usage](#usage)
-**6.** [🧩 API Reference](#api-reference)
-  **6.1** [🔢 Number Operations](#number-operations)
-  **6.2** [🔤 String Operations](#string-operations)
-  **6.3** [📊 Array Operations](#array-operations)
-**7.** [✅ Testing](#testing)
-**8.** [🐞 Debugging Guide](#debugging-guide)
-**9.** [🔧 Tools](#tools)
-**10.** [🤝 Contributing](#contributing)
-**11.** [📄 License](#license)
+1. 📖 Project Overview2. 📁 Directory Structure3. ⚙️ Prerequisites4. 🛠 Building5. 🚀 Usage6. 🧩 API Reference  6.1 🔢 Number Operations  6.2 🔤 String Operations  6.3 📊 Array Operations  6.4 🧪 Optional Features7. ✅ Testing8. 🐞 Debugging Guide9. 🔧 Tools10. 🤝 Contributing11. 📌 Project Status12. 📄 License
 
 ---
 
